@@ -1,0 +1,9 @@
+export { default as nav } from './nav';
+export { default as hero } from './hero';
+export { default as about } from './about';
+export { default as features } from './features';
+export { default as footer } from './footer';
+export { default as gallery } from './gallery';
+export { default as industrialSpaces } from './industrialSpaces';
+export { default as industrialPark } from './tenda_industrial_park';
+export { default as industrialParkPhase2 } from './tenda_industrial_park_phase2';
