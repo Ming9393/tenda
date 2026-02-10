@@ -3,10 +3,10 @@
  */
 export function fade(node, {
   delay = 0,
-  duration = 800,
-  easing = t => t,
+  duration = 1800,
+  easing = 'cubic-bezier(0.4, 0, 0.2, 1)',
   threshold = 0.1,
-  y = 20
+  y = 50
 } = {}) {
   // Initial styles - hidden and slightly translated
   node.style.opacity = '0';
@@ -17,11 +17,11 @@ export function fade(node, {
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        // When element is visible, fade it in
-        setTimeout(() => {
+        // When element is visible, fade it in and slide up
+        requestAnimationFrame(() => {
           node.style.opacity = '1';
           node.style.transform = 'translateY(0)';
-        }, 100); // Small additional delay for better visual effect
+        });
         
         // Stop observing after animation is triggered
         observer.unobserve(node);
@@ -29,7 +29,7 @@ export function fade(node, {
     });
   }, {
     threshold,
-    rootMargin: '0px 0px -100px 0px' // Trigger slightly before element is fully in view
+    rootMargin: '0px 0px -50px 0px' // Trigger when element is about to enter viewport
   });
   
   // Start observing the element

@@ -1,12 +1,13 @@
 <script>
   import { language } from '$lib/stores/language';
   import { about } from '../translations';
+  import { fade } from '../actions/fade';
   
   // Get current translation based on selected language
   $: t = about[$language] || about.en;
 </script>
 
-<section class="py-16 px-8 bg-white" id='about'>
+<section class="py-16 px-8 bg-white" id='about' use:fade={{ delay: 0, duration: 1800, y: 60 }}>
   <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
     <div>
       <h2 class="text-4xl font-bold text-[#1a2942] mb-6">

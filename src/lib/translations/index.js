@@ -7,3 +7,4 @@ export { default as gallery } from './gallery';
 export { default as industrialSpaces } from './industrialSpaces';
 export { default as industrialPark } from './tenda_industrial_park';
 export { default as industrialParkPhase2 } from './tenda_industrial_park_phase2';
+export { default as contact } from './contact';

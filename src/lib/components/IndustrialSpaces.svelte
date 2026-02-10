@@ -2,6 +2,7 @@
 <script>
   import { language } from '$lib/stores/language';
   import { industrialSpaces } from '../translations';
+  import { fade } from '../actions/fade';
   
   // Get translations for current language
   $: t = industrialSpaces[$language] || industrialSpaces.en;
@@ -22,7 +23,7 @@
   ];
 </script>
 
-<section class="py-12 md:py-24 px-4 md:px-8 bg-gray-100" id="industrialSpaces">
+<section class="py-12 md:py-24 px-4 md:px-8 bg-gray-100" id="industrialSpaces" use:fade={{ delay: 100, duration: 1000, y: 50 }}>
   <div class="max-w-7xl mx-auto">
     <h2 class="text-3xl md:text-5xl font-bold text-[#021627] mb-8 md:mb-16 text-center">
       {t.title}

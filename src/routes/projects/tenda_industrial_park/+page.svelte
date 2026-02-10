@@ -75,7 +75,7 @@
   <div class="relative h-screen min-h-[400px]">
     <div class="absolute inset-0">
       <img src="/tendaIndustrialPark.jpeg" alt="Tenda Industrial Park" class="w-full h-full object-cover" />
-      <div class="absolute inset-0 bg-[#1a2942] opacity-60"></div>
+      <div class="absolute inset-0 bg-[#1a2942] opacity-0"></div>
     </div>
     <div class="relative z-10 h-full flex items-center">
       <div class="container mx-auto px-4 md:px-8">

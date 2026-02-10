@@ -43,7 +43,7 @@
 </script>
 
 
-<section class="py-16 px-8 bg-gray-100" use:fade={{ delay: 200, duration: 1000, y: 30 }}>
+<section class="py-16 px-8 bg-gray-100" use:fade={{ delay: 0, duration: 1800, y: 60 }}>
   <div class="max-w-7xl mx-auto">
     <h2 class="text-4xl font-bold text-[#1a2942] mb-12">{t.title}</h2>
     

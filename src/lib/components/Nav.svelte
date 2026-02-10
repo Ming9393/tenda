@@ -12,6 +12,10 @@
   function toggleMenu() {
     isMenuOpen = !isMenuOpen;
   }
+
+  function closeMenu() {
+    isMenuOpen = false;
+  }
   
   function toggleLangDropdown() {
     isLangDropdownOpen = !isLangDropdownOpen;
@@ -80,7 +84,7 @@
         <a href="/" class="text-white font-exo text-md hover:text-gray-300">{t.home}</a>
         <a href="/projects" class="text-white font-exo text-md hover:text-gray-300">{t.projects}</a>
         <a href="/about" class="text-white font-exo text-md hover:text-gray-300">{t.about}</a>
-        <a href="#contact" class="text-white font-exo text-md hover:text-gray-300">{t.contact}</a>
+        <a href="/contact" class="text-white font-exo text-md hover:text-gray-300">{t.contact}</a>
   
   <!-- Language Dropdown -->
   <!-- Replace the existing language dropdown with this -->
@@ -116,10 +120,10 @@
     {#if isMenuOpen}
     <div class="md:hidden absolute top-full left-0 right-0 bg-[#1a2942] py-4 px-4 shadow-lg">
       <div class="flex flex-col space-y-4">
-        <a href="/" class="text-white hover:text-gray-300 py-2">{t.home}</a>
-        <a href="/projects" class="text-white hover:text-gray-300 py-2">{t.projects}</a>
-        <a href="/about" class="text-white hover:text-gray-300 py-2">{t.about}</a>
-        <a href="#contact" class="text-white hover:text-gray-300 py-2">{t.contact}</a>
+        <a href="/" class="text-white hover:text-gray-300 py-2" on:click={closeMenu}>{t.home}</a>
+        <a href="/projects" class="text-white hover:text-gray-300 py-2" on:click={closeMenu}>{t.projects}</a>
+        <a href="/about" class="text-white hover:text-gray-300 py-2" on:click={closeMenu}>{t.about}</a>
+        <a href="/contact" class="text-white hover:text-gray-300 py-2" on:click={closeMenu}>{t.contact}</a>
     
     <!-- Mobile Language Toggle -->
     <div class="mt-2 pt-2 border-t border-white/10">
