@@ -16,8 +16,6 @@ export const POST: RequestHandler = async ({ request }) => {
 
     // Get API key from environment
     if (!RESEND_API_KEY) {
-    
-    if (!RESEND_API_KEY) {
       console.error('RESEND_API_KEY is not configured');
       return json(
         { error: 'Email service not configured' },
