@@ -6,6 +6,7 @@
   
   let isMenuOpen = false;
   let isLangDropdownOpen = false;
+  let hasAnimated = false;
 
   $: t = nav[$language] || nav.en;
   
@@ -36,13 +37,18 @@
   
   onMount(() => {
     document.addEventListener('click', handleClickOutside);
+    requestAnimationFrame(() => {
+      hasAnimated = true;
+    });
     return () => {
       document.removeEventListener('click', handleClickOutside);
     };
   });
 </script>
   
-  <nav class="fixed h-20 w-full z-50 bg-[#021627] py-3 px-4 md:px-8">
+  <nav
+    class="fixed h-20 w-full z-50 bg-[#021627] py-3 px-4 md:px-8 -translate-y-full {hasAnimated ? 'translate-y-0 transition-transform duration-500 ease-out' : ''}"
+  >
     <div class="max-w-7xl mx-auto flex justify-between items-center">
       <div class="text-white text-xl md:text-2xl font-bold ">
         <img src="/tendaLogo-bgrm.png" alt="Tenda Development" class="h-14" />

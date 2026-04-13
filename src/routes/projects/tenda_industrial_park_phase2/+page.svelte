@@ -1,6 +1,7 @@
 <script>
     import { language } from '$lib/stores/language';
     import { industrialParkPhase2 } from '../../../lib/translations';
+    import { fade } from '$lib/actions/fade';
     import { onMount } from 'svelte';
     
     $: t = industrialParkPhase2[$language] || industrialParkPhase2.en;
@@ -84,26 +85,9 @@
       </div>
     </div>
   </div>
-  
-  <!-- Overview Section -->
-  <section class="py-16 bg-white">
-    <div class="container mx-auto px-4 md:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-        <div>
-          <h2 class="text-3xl font-bold text-[#1a2942] mb-6">{t.overview.title}</h2>
-          {#each t.overview.paragraphs as paragraph}
-            <p class="mb-4 text-gray-700">{paragraph}</p>
-          {/each}
-        </div>
-        <div class="rounded-lg overflow-hidden shadow-xl">
-          <img src="/tendaIndustrialPark.jpeg" alt="Industrial Park Aerial View" class="w-full h-auto" />
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- Master Plan Section -->
-  <section class="py-16 bg-gray-50">
+  <section class="py-16 bg-gray-50" use:fade={{ delay: 0 }}>
     <div class="max-w-7xl mx-auto px-4 md:px-8">
       <h2 class="text-3xl md:text-5xl font-bold text-[#1a2942] mb-12 text-center">{t.masterPlan?.title || "Master Plan"}</h2>
       
@@ -120,7 +104,7 @@
   </section>
   
   <!-- Features Section -->
-  <section class="py-16 bg-gray-50">
+  <section class="py-16 bg-gray-50" use:fade={{ delay: 100 }}>
     <div class="container mx-auto px-4 md:px-8">
       <div class="flex justify-center items-center shadow-lg bg-gray-500 max-w-5xl  m-auto overflow-hidden">
         <div class="relative w-full">
@@ -133,7 +117,7 @@
   </section>
   
   <!-- Site Progress Section -->
-  <section class="py-16 bg-white">
+  <section class="py-16 bg-white" use:fade={{ delay: 200 }}>
     <div class="container mx-auto px-4 md:px-8">
       <h2 class="text-3xl font-bold text-[#1a2942] mb-12 text-center">{t.siteProgress?.title || "Site Progress"}</h2>
       
@@ -193,7 +177,7 @@
   </section>
   
   <!-- Specification Section -->
-  <section class="py-16 bg-gray-50">
+  <section class="py-16 bg-gray-50" use:fade={{ delay: 300 }}>
     <div class="container mx-auto px-4 md:px-8">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         
@@ -275,7 +259,7 @@
   </section>
   
   <!-- Location Section -->
-  <section class="py-16 bg-gray-50">
+  <section class="py-16 bg-gray-50" use:fade={{ delay: 400 }}>
     <div class="max-w-7xl mx-auto px-4 md:px-8">
       <h2 class="text-3xl md:text-5xl font-bold text-[#1a2942] mb-12 text-center">{t.location.title}</h2>
       
@@ -292,7 +276,7 @@
   </section>
   
   <!-- Location Details Section -->
-  <section class="py-16 bg-white">
+  <section class="py-16 bg-white" use:fade={{ delay: 500 }}>
     <div class="container mx-auto px-4 md:px-8">
       <h2 class="text-3xl font-bold text-[#1a2942] mb-12 text-center">{t.locationDetails?.title || "Location Details"}</h2>
       
@@ -343,7 +327,7 @@
   </section>
   
   <!-- CTA Section -->
-  <section class="py-16 bg-[#1a2942] text-white">
+  <section class="py-16 bg-[#1a2942] text-white" use:fade={{ delay: 600 }}>
     <div class="container mx-auto px-4 md:px-8 text-center">
       <h2 class="text-3xl font-bold mb-6">{t.cta.title}</h2>
       <p class="text-xl mb-8 max-w-3xl mx-auto">{t.cta.description}</p>

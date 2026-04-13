@@ -1,5 +1,6 @@
 /**
- * Fade-in animation for elements when they enter the viewport
+ * Fade-in animation for elements when they enter the viewport.
+ * Re-triggers every time the element scrolls into view.
  */
 export function fade(node, {
   delay = 0,
@@ -8,31 +9,36 @@ export function fade(node, {
   threshold = 0.1,
   y = 50
 } = {}) {
-  // Initial styles - hidden and slightly translated
-  node.style.opacity = '0';
-  node.style.transform = `translateY(${y}px)`;
-  node.style.transition = `opacity ${duration}ms ${easing} ${delay}ms, transform ${duration}ms ${easing} ${delay}ms`;
-  
-  // Create intersection observer
+  const transition = `opacity ${duration}ms ${easing} ${delay}ms, transform ${duration}ms ${easing} ${delay}ms`;
+
+  function setHidden() {
+    node.style.transition = 'none';
+    node.style.opacity = '0';
+    node.style.transform = `translateY(${y}px)`;
+    node.offsetHeight; // force reflow so transition applies on next change
+    node.style.transition = transition;
+  }
+
+  function setVisible() {
+    node.style.opacity = '1';
+    node.style.transform = 'translateY(0)';
+  }
+
+  setHidden();
+
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        // When element is visible, fade it in and slide up
-        requestAnimationFrame(() => {
-          node.style.opacity = '1';
-          node.style.transform = 'translateY(0)';
-        });
-        
-        // Stop observing after animation is triggered
-        observer.unobserve(node);
+        requestAnimationFrame(setVisible);
+      } else {
+        requestAnimationFrame(setHidden);
       }
     });
   }, {
     threshold,
-    rootMargin: '0px 0px -50px 0px' // Trigger when element is about to enter viewport
+    rootMargin: '0px 0px -50px 0px'
   });
-  
-  // Start observing the element
+
   observer.observe(node);
   
   return {

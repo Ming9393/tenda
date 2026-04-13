@@ -12,37 +12,24 @@
     message: ''
   };
   
-  let isSubmitting = false;
-  let submitStatus = null;
+  const whatsappNumber = '60136392321';
   
-  async function handleSubmit(event) {
+  /** @param {SubmitEvent} event */
+  function handleSubmit(event) {
     event.preventDefault();
-    isSubmitting = true;
-    submitStatus = null;
-    
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-      });
+    const message = [
+      'Hi, I would like to know more about the factories that you are selling!',
+      '',
+      'Below are my information:',
+      `Name: ${formData.name}`,
+      `Email: ${formData.email}`,
+      `Phone: ${formData.phone || '-'}`,
+      `Subject: ${formData.subject}`,
+      `Message: ${formData.message}`
+    ].join('\r\n');
 
-      const result = await response.json();
-
-      if (response.ok && result.success) {
-        submitStatus = 'success';
-        formData = { name: '', email: '', phone: '', subject: '', message: '' };
-      } else {
-        submitStatus = 'error';
-      }
-    } catch (error) {
-      console.error('Form submission error:', error);
-      submitStatus = 'error';
-    } finally {
-      isSubmitting = false;
-    }
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
   }
 </script>
 
@@ -124,24 +111,11 @@
             ></textarea>
           </div>
           
-          {#if submitStatus === 'success'}
-            <div class="p-4 bg-green-50 border border-green-200 rounded-lg text-green-700">
-              {t.form.success}
-            </div>
-          {/if}
-          
-          {#if submitStatus === 'error'}
-            <div class="p-4 bg-red-50 border border-red-200 rounded-lg text-red-700">
-              {t.form.error}
-            </div>
-          {/if}
-          
           <button
             type="submit"
-            disabled={isSubmitting}
-            class="w-full bg-[#ff7f27] text-white py-3 px-6 rounded-lg font-semibold hover:bg-[#e66f1f] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            class="w-full bg-[#ff7f27] text-white py-3 px-6 rounded-lg font-semibold hover:bg-[#e66f1f] transition-colors"
           >
-            {isSubmitting ? t.form.sending : t.form.send}
+            {t.form.send}
           </button>
         </form>
       </div>
